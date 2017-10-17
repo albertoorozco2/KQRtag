@@ -1,4 +1,4 @@
-# Project Title
+# KQR tags
 
 Key QR Tag generator and reader on python3
 
@@ -31,7 +31,7 @@ QR jpg images will be generate and store in the same folder by default
 
 ## Versioning
 
-We use are developing this software, it is beta version. 
+We are developing this software, it is beta version. 
 
 ## Authors
 
