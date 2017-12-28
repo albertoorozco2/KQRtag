@@ -1,5 +1,5 @@
-
-#lybrary from https://github.com/allenywang/Real-Time-QR-Recognizer-Reader-and-Decoder
+''' RTQR - QR tag reader, is a module that is capable of use the webcam as reader for qr tags , when a QR tag is readed the module stops and display the data stored in the system, 
+this prototype version is using variables set in the code, but eventually will be store and retrive from a database from cloud '''
 import os
 import zbar
 import time
@@ -8,22 +8,27 @@ from PIL import Image
 
 import cv2
 
-#temporal keys
 keys_data = {"b'cct0001'" : "\n    Name: Oconolly room \n    Description: main dor on the righ side",
              "b'cct0002'" : "\n    Name: reception room \n    Description: second door in the main entrance",
              "b'cct0003'" : "\n    Name: locker in room \n    Description: red locker on the right", 
              "b'cct0004'" : "\n    Name: main door\n     Description: the big door ", 
              "b'cct0005'" : "\n    Name: front desk\n     Description: big draw"}
+'''
+temporal key values in the code to retrieve the data when a QR tag is readed
 
+'''
 def main():
-    """
+
+
+    '''
     A simple function that captures webcam video utilizing OpenCV. The video is then broken down into frames which
     are constantly displayed. The frame is then converted to grayscale for better contrast. Afterwards, the image
     is transformed into a numpy array using PIL. This is needed to create zbar image. This zbar image is then scanned
-    utilizing zbar's image scanner and will then print the decodeed message of any QR or bar code. To quit the program,
-    press "q".
-    :return:
-    """
+    utilizing zbar's image scanner and will then print the decodeed message of any QR or bar code and quit the reader.
+        <br><br>this function is from <a href="https://github.com/allenywang/Real-Time-QR-Recognizer-Reader-and-Decoder"> allenywang - Real Time QR Recognizer Reader and Decoder
+<a/>.
+
+    '''
 
     # Begin capturing video. You can modify what video source to use with VideoCapture's argument. It's currently set
     # to be your webcam.

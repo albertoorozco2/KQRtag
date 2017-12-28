@@ -1,3 +1,5 @@
+''' RTQRC - live cam QR tag reader, this is a module that is capable of use the webcam as reader for qr tags , when a QR tag is readed, it display the data if it is stored in the system, 
+otherwise display only the data readed from the QR tag and continued readed until q is press on the keyboard '''
 
 #lybrary from https://github.com/allenywang/Real-Time-QR-Recognizer-Reader-and-Decoder
 import os
@@ -12,17 +14,22 @@ keys_data = {"cct9999" : "\n    Name: Oconolly room \n    Description: main dor 
              "cct0003" : "\n    Name: locker in room \n    Description: red locker on the right", 
              "cct0004" : "\n    Name: main door\n     Description: the big door ", 
              "cct0005" : "\n    Name: front desk\n     Description: big draw"}
+'''
+temporal key values in the code to retrieve the data when a QR tag is readed
 
+'''
 
 def main():
-    """
+    '''
     A simple function that captures webcam video utilizing OpenCV. The video is then broken down into frames which
     are constantly displayed. The frame is then converted to grayscale for better contrast. Afterwards, the image
     is transformed into a numpy array using PIL. This is needed to create zbar image. This zbar image is then scanned
     utilizing zbar's image scanner and will then print the decodeed message of any QR or bar code. To quit the program,
-    press "q".
-    :return:
-    """
+    press q.
+        <br><br>this function is from <a href="https://github.com/allenywang/Real-Time-QR-Recognizer-Reader-and-Decoder"> allenywang - Real Time QR Recognizer Reader and Decoder
+<a/>.
+
+    '''
 
     # Begin capturing video. You can modify what video source to use with VideoCapture's argument. It's currently set
     # to be your webcam.
