@@ -3,9 +3,9 @@
 import os
 import sys
 sys.path.append('/Users/A1/Documents/python3/KQR/')
-import QRG
-import RTQR
-import RTQRC
+import qrGenerator
+import qrReader
+import qrCamReader
 
 """
 this is the main
@@ -14,23 +14,30 @@ this is the main
 def start_app():
 	clear = lambda: os.system('clear')
 	clear()
-	print("\n\nKK  KK  QQQQQ  RRRRRR  \nKK KK  QQ   QQ RR   RR \nKKKK   QQ   QQ RRRRRR  \nKK KK  QQ  QQ  RR  RR  \nKK  KK  QQQQ Q RR   RR \n\n\n")
-	print("Welcome to KQR key system solution, \n choose an option:  \n1: to generate a QR code\n2: to read a QR tag\n3: to live reader QR tags")
+
+	print("\t\n\n██╗  ██╗ ██████╗ ██████╗          \t\n██║ ██╔╝██╔═══██╗██╔══██╗         \t\n█████╔╝ ██║   ██║██████╔╝         \t\n██╔═██╗ ██║▄▄ ██║██╔══██╗         \t\n██║  ██╗╚██████╔╝██║  ██║         \t\n╚═╝  ╚═╝ ╚══▀▀═╝ ╚═╝  ╚═╝  ")
+	print("\t\n Welcome to \n Key Quick Response tags \n Management Keys System\n")
+	print("Menu:  \n1:QR code generator\n2:QR reader\n3:QR livecam reader (beta)\n4:Exit \n")
 
 	data = ""
 	while data != 1 or data != 2 or data != 3:
-		data = int(input("type: "))
+		data = input("type: ")
 
-		if data == 1:
-			QRG.collect_data()
+		if data == "1":
+			qrGenerator.collect_data()
 			start_app()
-		elif data ==2:
-			RTQR.main()
-			print("comeback")
+		elif data =="2":
+			qrReader.main()
 			start_app()
-		elif data ==3:
-			RTQRC.main()
+		elif data =="3":
+			qrCamReader.main()
+			start_app()
+		elif data =="4":
+			clear = lambda: os.system('clear')
+			clear()
+			exit()
 		else:
 			print("Wrong input")
+			start_app()
 
 start_app()

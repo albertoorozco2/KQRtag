@@ -53,7 +53,7 @@ def create_QRtag(data, QR_size, QR_border):
     qr.make(fit=True)
     img = qr.make_image()
     file_extension = "JPEG"
-    file_name = data+'.'+file_extension
+    file_name = "Z"+data+'.'+file_extension
 
     #will open the file, if file does not exist, it will be created and opened.
     image_file = open(file_name,'w+') 
