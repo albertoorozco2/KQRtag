@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 import os
 import sys
-sys.path.append('/Users/A1/Documents/python3/KQR/')
-import QRG
-import RTQR
-import RTQRC
-__all__ = ["main", "QRG", "QRG", "RTQR", "RTQRC"]
+sys.path.append(u'/Users/A1/Documents/python3/KQR/python3')
+import qrGenerator
+import qrReader
+import qrCamReader
+__all__ = [u"main", u"qrGenerator", u"qrReader", u"qrCamReader"]

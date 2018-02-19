@@ -1,5 +1,6 @@
-''' RTQR - QR tag reader, is a module that is capable of use the webcam as reader for qr tags , when a QR tag is readed the module stops and display the data stored in the system, 
+u''' RTQR - QR tag reader, is a module that is capable of use the webcam as reader for qr tags , when a QR tag is readed the module stops and display the data stored in the system, 
 this prototype version is using variables set in the code, but eventually will be store and retrive from a database from cloud '''
+from __future__ import absolute_import
 import os
 from PIL import Image
 import zbar
@@ -8,19 +9,19 @@ import time
 
 import cv2
 
-keys_data = {"b'cct0001'" : "\n    Name: Oconolly room \n    Description: main dor on the righ side",
-             "b'cct0002'" : "\n    Name: reception room \n    Description: second door in the main entrance",
-             "b'cct0003'" : "\n    Name: locker in room \n    Description: red locker on the right", 
-             "b'cct0004'" : "\n    Name: main door\n     Description: the big door ", 
-             "b'cct0005'" : "\n    Name: front desk\n     Description: big draw"}
-'''
+keys_data = {u"b'cct0001'" : u"\n    Name: Oconolly room \n    Description: main dor on the righ side",
+             u"b'cct0002'" : u"\n    Name: reception room \n    Description: second door in the main entrance",
+             u"b'cct0003'" : u"\n    Name: locker in room \n    Description: red locker on the right", 
+             u"b'cct0004'" : u"\n    Name: main door\n     Description: the big door ", 
+             u"b'cct0005'" : u"\n    Name: front desk\n     Description: big draw"}
+u'''
 temporal key values in the code to retrieve the data when a QR tag is readed
 
 '''
 def main():
 
 
-    '''
+    u'''
     A simple function that captures webcam video utilizing OpenCV. The video is then broken down into frames which
     are constantly displayed. The frame is then converted to grayscale for better contrast. Afterwards, the image
     is transformed into a numpy array using PIL. This is needed to create zbar image. This zbar image is then scanned
@@ -32,19 +33,19 @@ def main():
 
     # Begin capturing video. You can modify what video source to use with VideoCapture's argument. It's currently set
     # to be your webcam.
-    clear = lambda: os.system('clear')
+    clear = lambda: os.system(u'clear')
 
-    print('\n\n\n\n    Place QR infront of the camera')
+    print u'\n\n\n\n    Place QR infront of the camera'
 
     capture = cv2.VideoCapture(0)
-    stop = ""
+    stop = u""
     while True:
         # To quit this program press q.
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord(u'q'):
             cv2.destroyAllWindows()
             break
 
-        if stop != "":
+        if stop != u"":
             cv2.destroyAllWindows()
             break
 
@@ -52,7 +53,7 @@ def main():
         ret, frame = capture.read()
 
         # Displays the current frame
-        cv2.imshow('Current', frame)
+        cv2.imshow(u'Current', frame)
 
         # Converts image to grayscale.
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -76,20 +77,20 @@ def main():
         results = scanner.scan(image)
         for result in results:
             #print(result.type, result.data, result.quality, result.position) 
-            clear = lambda: os.system('clear')
+            clear = lambda: os.system(u'clear')
             clear()
-            print("\n\n\n\n\n    ")
-            print(("    "+str(result.data)))
-            if str(result.data) in keys_data:
-                print('    key in database KQRtag')
-                print(("    "+keys_data.get(str(result.data))))
+            print u"\n\n\n\n\n    "
+            print u"    "+unicode(result.data)
+            if unicode(result.data) in keys_data:
+                print u'    key in database KQRtag'
+                print u"    "+keys_data.get(unicode(result.data))
             else:
-                print((str(result.data)))
-                print('no key with the QRtag')
+                print unicode(result.data)
+                print u'no key with the QRtag'
 
-            print('\n\n5sec to comeback main menu')
+            print u'\n\n5sec to comeback main menu'
             time.sleep(5)
-            stop = str(result.data)
+            stop = unicode(result.data)
 
         # # Prints data from image.
         # for decoded in zbar_image:
@@ -98,5 +99,5 @@ def main():
     
 
 
-if __name__ == "__main__":
+if __name__ == u"__main__":
     main()
