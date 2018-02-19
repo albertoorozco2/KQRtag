@@ -11,22 +11,31 @@ python3 kqr.py
 
 ### Prerequisites
 
-python libraries by pip
+python 3.6.4
+pip 9.0.1
 
-PIL or Pillow
-QRcode
-Zbar
-openCV
+python libraries by pip
+-setuptools
+-Pillow
+-QRcode
+-Zbar / pyzbar
+-openCV-python
+
+alternatively:
+
+2to3 --output-dir=KQR/KQRpython2 -W -n KQR 
 
 
 ### Installing
 
-Copy folder at any destination
+Copy folder at any destination and run on command line
+
+python3 main.py
 
 
 ## QR code images 
 
-QR jpg images will be generate and store in the same folder by default
+QR jpg images will be generate and store in the same qrGenerated folder by default
 
 
 ## Versioning
