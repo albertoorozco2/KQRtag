@@ -23,7 +23,9 @@ python libraries by pip
 
 alternatively:
 
-2to3 --output-dir=KQR/KQRpython2 -W -n KQR 
+copy "python3" folder
+rename "python2"
+run command:  3to2 python2 -w -n
 
 
 ### Installing

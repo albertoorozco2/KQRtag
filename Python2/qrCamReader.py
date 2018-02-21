@@ -70,16 +70,23 @@ def main():
         # scanner.scan(zbar_image)
 
 
-        #fixed for python3
-        image = gray # whatever function you use to read an image file into a numpy array
-        scanner = zbar.Scanner()
-        results = scanner.scan(image)
-        for result in results:
+
+        # Uses PIL to convert the grayscale image into a ndary array that ZBar can understand.
+        image = Image.fromarray(gray)
+        width, height = image.size
+        zbar_image = zbar.Image(width, height, 'Y800', image.tostring())
+
+        # Scans the zbar image.
+        scanner = zbar.ImageScanner()
+        scanner.scan(zbar_image)
+
+        # Prints data from image.
+        for decoded in zbar_image:
             #print(result.type, result.data, result.quality, result.position) 
             clear = lambda: os.system(u'clear')
             clear()
             print u"\n\n\n\n\n"
-            newstr = unicode(result.data).replace(u"b'", u"").replace(u"'",u"")
+            newstr = unicode(decoded.data).replace(u"b'", u"").replace(u"'",u"")
             print u"    "+newstr
             print u"\n\n"
 
