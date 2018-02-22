@@ -11,7 +11,25 @@ import qrCamReader
 this is the main
 """
 
+	 	
+
 def start_app():
+	logged = False
+
+	clear = lambda: os.system('clear')
+	clear()
+
+	while logged== False:
+		clear = lambda: os.system('clear')
+		clear()
+		print("\t\n\n██╗  ██╗ ██████╗ ██████╗          \t\n██║ ██╔╝██╔═══██╗██╔══██╗         \t\n█████╔╝ ██║   ██║██████╔╝         \t\n██╔═██╗ ██║▄▄ ██║██╔══██╗         \t\n██║  ██╗╚██████╔╝██║  ██║         \t\n╚═╝  ╚═╝ ╚══▀▀═╝ ╚═╝  ╚═╝  ")
+		print("\t\n Welcome to \n Key Quick Response tags \n Management Keys System\n")
+		print("Log In \n")
+		user = input("user: ")
+		password = input("password: ")
+		if user=="admin" and password=="1234":
+			logged = True
+
 	clear = lambda: os.system('clear')
 	clear()
 
