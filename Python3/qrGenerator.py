@@ -4,6 +4,16 @@
 import qrcode
 import os
 import urllib.request
+# import time
+# import sys
+
+# s = '.'
+# sys.stdout.write( 'working' )
+# while True:
+#         sys.stdout.write( s )
+#         sys.stdout.flush()
+#         time.sleep(0.5)
+
 
    
 def collect_data():
@@ -13,11 +23,14 @@ def collect_data():
     clear = lambda: os.system('clear')
     clear()
     nameKey = input("Key Name: ")
-    locationKey = input("Key Location: ")
-    commentKey = input("any extra comments for location: ")
-    print(urllib.request.urlopen("http://kqrtags.000webhostapp.com/?name="+nameKey+"&location="+locationKey+"&comment="+commentKey+"").read())
 
-    data = input("Data to QRCode: ")
+    locationKey = input("Key Location: ")
+
+    commentKey = input("any extra comments for location: ")
+
+    data = urllib.request.urlopen("http://kqrtags.000webhostapp.com/?name="+nameKey+"&location="+locationKey+"&comment="+commentKey+"").read()
+    data = data.decode("utf-8")
+    print("Your Key Number is "+data)
     box_size = input("Size of tag (press Enter to default 15mm): ")
     if box_size =="":
         box_size = 2
