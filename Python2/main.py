@@ -7,15 +7,28 @@ import qrGenerator
 import qrReader
 import qrCamReader
 
-"""
+u"""
 this is the main
 """
 
-def start_app():
+	 	
+
+def start_app(logged):
+	clear = lambda: os.system(u'clear')
+	clear()
+	while logged== False:
+		clear = lambda: os.system(u'clear')
+		clear()
+		print u"\t\n Welcome to \n Key Quick Response tags \n Management Keys System\n"
+		print u"Log In \n"
+		user = raw_input(u"user: ")
+		password = raw_input(u"password: ")
+		if user==u"admin" and password==u"1234":
+			logged = True
+
 	clear = lambda: os.system(u'clear')
 	clear()
 
-	print u"\n_   _____________ \n| | / /  _  | ___ \\n| |/ /| | | | |_/ /\n|    \| | | |    / \n| |\  \ \/' / |\ \ \n\_| \_/\_/\_\_| \_|"
 	print u"\t\n Welcome to \n Key Quick Response tags \n Management Keys System\n"
 	print u"Menu:  \n1:QR code generator\n2:QR reader\n3:QR livecam reader (beta)\n4:Exit \n"
 
@@ -25,13 +38,13 @@ def start_app():
 
 		if data == u"1":
 			qrGenerator.collect_data()
-			start_app()
+			start_app(True)
 		elif data ==u"2":
 			qrReader.main()
-			start_app()
+			start_app(True)
 		elif data ==u"3":
 			qrCamReader.main()
-			start_app()
+			start_app(True)
 		elif data ==u"4":
 			clear = lambda: os.system(u'clear')
 			clear()
@@ -40,4 +53,4 @@ def start_app():
 			print u"Wrong input"
 			start_app()
 
-start_app()
+start_app(False)

@@ -5,15 +5,9 @@ otherwise display only the data readed from the QR tag and continued readed unti
 import os
 from PIL import Image
 import zbar
-
-
+import urllib.request
 import cv2
 
-keys_data = {"cct9999" : "\n    Name: Oconolly room \n    Description: main dor on the righ side",
-             "cct0234" : "\n    Name: reception room \n    Description: second door in the main entrance",
-             "cct0003" : "\n    Name: locker in room \n    Description: red locker on the right", 
-             "cct0004" : "\n    Name: main door\n     Description: the big door ", 
-             "cct0005" : "\n    Name: front desk\n     Description: big draw"}
 '''
 temporal key values in the code to retrieve the data when a QR tag is readed
 
@@ -77,18 +71,14 @@ def main():
             #print(result.type, result.data, result.quality, result.position) 
             clear = lambda: os.system('clear')
             clear()
-            print("\n\n\n\n\n")
-            newstr = str(result.data).replace("b'", "").replace("'","")
-            print("    "+newstr)
-            print("\n\n")
-
-            if newstr in keys_data:
-                print('    key in database KQRtag')
-                print("    "+keys_data.get(newstr))
-
-            else:
-                print('\n\n    no key with the QRtag')
-
+            print("\n\n\n\n\n    ")
+            data = urllib.request.urlopen("http://kqrtags.000webhostapp.com/?number="+result.data.decode("utf-8")).read()
+            data = data.decode("utf-8")
+            data = data.replace("\n", "")
+            print('    key database info\n'+data)
+            if data=="":
+                print("no key")
+       
 
             print("\n\n\n\n\n press Ctrl+C to quit program")
 

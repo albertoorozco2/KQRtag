@@ -5,15 +5,9 @@ import os
 from PIL import Image
 import zbar
 import time
-
-
+import urllib2, urllib
 import cv2
 
-keys_data = {u"b'cct0001'" : u"\n    Name: Oconolly room \n    Description: main dor on the righ side",
-             u"b'cct0002'" : u"\n    Name: reception room \n    Description: second door in the main entrance",
-             u"b'cct0003'" : u"\n    Name: locker in room \n    Description: red locker on the right", 
-             u"b'cct0004'" : u"\n    Name: main door\n     Description: the big door ", 
-             u"b'cct0005'" : u"\n    Name: front desk\n     Description: big draw"}
 u'''
 temporal key values in the code to retrieve the data when a QR tag is readed
 
@@ -80,13 +74,10 @@ def main():
             clear = lambda: os.system(u'clear')
             clear()
             print u"\n\n\n\n\n    "
-            print u"    "+unicode(result.data)
-            if unicode(result.data) in keys_data:
-                print u'    key in database KQRtag'
-                print u"    "+keys_data.get(unicode(result.data))
-            else:
-                print unicode(result.data)
-                print u'no key with the QRtag'
+            data = urllib2.urlopen(u"http://kqrtags.000webhostapp.com/?number="+result.data.decode(u"utf-8")).read()
+            data = data.decode(u"utf-8")
+            data = data.replace(u" ", u"\n")
+            print u'    key in database KQRtag\n'+data
 
             print u'\n\n5sec to comeback main menu'
             time.sleep(5)

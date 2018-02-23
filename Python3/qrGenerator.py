@@ -30,6 +30,7 @@ def collect_data():
 
     data = urllib.request.urlopen("http://kqrtags.000webhostapp.com/?name="+nameKey+"&location="+locationKey+"&comment="+commentKey+"").read()
     data = data.decode("utf-8")
+    data = data.replace('\n', '')
     print("Your Key Number is "+data)
     box_size = input("Size of tag (press Enter to default 15mm): ")
     if box_size =="":

@@ -5,7 +5,19 @@ from __future__ import division
 from __future__ import absolute_import
 import qrcode
 import os
+import urllib2, urllib
 from io import open
+# import time
+# import sys
+
+# s = '.'
+# sys.stdout.write( 'working' )
+# while True:
+#         sys.stdout.write( s )
+#         sys.stdout.flush()
+#         time.sleep(0.5)
+
+
    
 def collect_data():
     u''' function to collect data from the user to create the qr tag, the user type the data that want to be encoded in qr tag
@@ -13,8 +25,16 @@ def collect_data():
 
     clear = lambda: os.system(u'clear')
     clear()
+    nameKey = raw_input(u"Key Name: ")
 
-    data = raw_input(u"Data to QRCode: ")
+    locationKey = raw_input(u"Key Location: ")
+
+    commentKey = raw_input(u"any extra comments for location: ")
+
+    data = urllib2.urlopen(u"http://kqrtags.000webhostapp.com/?name="+nameKey+u"&location="+locationKey+u"&comment="+commentKey+u"").read()
+    data = data.decode(u"utf-8")
+    data = data.replace(u'\n', u'')
+    print u"Your Key Number is "+data
     box_size = raw_input(u"Size of tag (press Enter to default 15mm): ")
     if box_size ==u"":
         box_size = 2

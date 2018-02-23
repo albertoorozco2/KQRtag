@@ -6,15 +6,9 @@ from __future__ import absolute_import
 import os
 from PIL import Image
 import zbar
-
-
+import urllib2, urllib
 import cv2
 
-keys_data = {u"cct9999" : u"\n    Name: Oconolly room \n    Description: main dor on the righ side",
-             u"cct0234" : u"\n    Name: reception room \n    Description: second door in the main entrance",
-             u"cct0003" : u"\n    Name: locker in room \n    Description: red locker on the right", 
-             u"cct0004" : u"\n    Name: main door\n     Description: the big door ", 
-             u"cct0005" : u"\n    Name: front desk\n     Description: big draw"}
 u'''
 temporal key values in the code to retrieve the data when a QR tag is readed
 
@@ -70,33 +64,22 @@ def main():
         # scanner.scan(zbar_image)
 
 
-
-        # Uses PIL to convert the grayscale image into a ndary array that ZBar can understand.
-        image = Image.fromarray(gray)
-        width, height = image.size
-        zbar_image = zbar.Image(width, height, 'Y800', image.tostring())
-
-        # Scans the zbar image.
-        scanner = zbar.ImageScanner()
-        scanner.scan(zbar_image)
-
-        # Prints data from image.
-        for decoded in zbar_image:
+        #fixed for python3
+        image = gray # whatever function you use to read an image file into a numpy array
+        scanner = zbar.Scanner()
+        results = scanner.scan(image)
+        for result in results:
             #print(result.type, result.data, result.quality, result.position) 
             clear = lambda: os.system(u'clear')
             clear()
-            print u"\n\n\n\n\n"
-            newstr = unicode(decoded.data).replace(u"b'", u"").replace(u"'",u"")
-            print u"    "+newstr
-            print u"\n\n"
-
-            if newstr in keys_data:
-                print u'    key in database KQRtag'
-                print u"    "+keys_data.get(newstr)
-
-            else:
-                print u'\n\n    no key with the QRtag'
-
+            print u"\n\n\n\n\n    "
+            data = urllib2.urlopen(u"http://kqrtags.000webhostapp.com/?number="+result.data.decode(u"utf-8")).read()
+            data = data.decode(u"utf-8")
+            data = data.replace(u"\n", u"")
+            print u'    key database info\n'+data
+            if data==u"":
+                print u"no key"
+       
 
             print u"\n\n\n\n\n press Ctrl+C to quit program"
 
