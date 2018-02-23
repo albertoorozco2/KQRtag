@@ -13,12 +13,9 @@ this is the main
 
 	 	
 
-def start_app():
-	logged = False
-
+def start_app(logged):
 	clear = lambda: os.system('clear')
 	clear()
-
 	while logged== False:
 		clear = lambda: os.system('clear')
 		clear()
@@ -43,13 +40,13 @@ def start_app():
 
 		if data == "1":
 			qrGenerator.collect_data()
-			start_app()
+			start_app(True)
 		elif data =="2":
 			qrReader.main()
-			start_app()
+			start_app(True)
 		elif data =="3":
 			qrCamReader.main()
-			start_app()
+			start_app(True)
 		elif data =="4":
 			clear = lambda: os.system('clear')
 			clear()
@@ -58,4 +55,4 @@ def start_app():
 			print("Wrong input")
 			start_app()
 
-start_app()
+start_app(False)

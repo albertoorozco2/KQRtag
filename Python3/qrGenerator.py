@@ -3,6 +3,8 @@
 
 import qrcode
 import os
+import urllib.request
+
    
 def collect_data():
     ''' function to collect data from the user to create the qr tag, the user type the data that want to be encoded in qr tag
@@ -10,6 +12,10 @@ def collect_data():
 
     clear = lambda: os.system('clear')
     clear()
+    nameKey = input("Key Name: ")
+    locationKey = input("Key Location: ")
+    commentKey = input("any extra comments for location: ")
+    print(urllib.request.urlopen("http://kqrtags.000webhostapp.com/?name="+nameKey+"&location="+locationKey+"&comment="+commentKey+"").read())
 
     data = input("Data to QRCode: ")
     box_size = input("Size of tag (press Enter to default 15mm): ")
